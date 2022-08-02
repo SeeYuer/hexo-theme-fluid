@@ -11,8 +11,9 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div><%= page.title %></div>
-      <div><%= decode_url(page.permalink) %></div>
+      <!-- <i class="iconfont icon-xieboke" style="font-size: 1.1rem;font-weight: normal;"></i> -->
+      <div style="margin-left: -7px;"></i>《&thinsp;<%= page.title %>&thinsp;》</div>
+      <div><a href="<%= decode_url(page.permalink) %>" class="license-link"><%= decode_url(page.permalink) %></a></div>
     </div>
     <div class="license-meta">
       <% if (theme.post.copyright.author.enable && (page.author || config.author)) { %>

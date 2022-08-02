@@ -8,6 +8,7 @@
           <%- JSON.stringify(theme.waline || {}) %>,
           {
             el: '#waline',
+            comment: true, // 评论数统计
             path: <%= theme.waline.path %>
           }
         )

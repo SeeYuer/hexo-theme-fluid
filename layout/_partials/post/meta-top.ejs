@@ -59,5 +59,8 @@
         <% import_js(theme.static_prefix.busuanzi, 'busuanzi.pure.mini.js', 'defer') %>
       <% } %>
     <% } %>
+    <!-- 引入评论数 -->
+    <span style="margin-left: 10px;"><i class="iconfont icon-pinglun"></i>&nbsp;&nbsp;<span class="waline-comment-count" data-path="<%= url_for(page.path) %>"></span> 条评论</span>
+  </span>
   </div>
 <% } %>

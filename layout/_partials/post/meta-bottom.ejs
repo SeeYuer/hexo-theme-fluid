@@ -1,3 +1,7 @@
+<% if (theme.post.peroration.enable) { %>
+  <div class="note note-success"><%- theme.post.peroration.text %></div>
+  <div>
+<% } %>
 <div class="post-metas my-3">
   <% if (page.categories && page.categories.length > 0) { %>
     <div class="post-meta mr-3 d-flex align-items-center">

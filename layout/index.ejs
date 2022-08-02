@@ -20,7 +20,13 @@ page.banner_mask_alpha = theme.index.banner_mask_alpha
     <article class="col-12 col-md-<%= index_img ? '8' : '12' %> mx-auto index-info">
       <h1 class="index-header">
         <% if (theme.index.post_sticky && theme.index.post_sticky.enable && post.sticky > 0) { %>
-          <i class="index-pin <%= theme.index.post_sticky && theme.index.post_sticky.icon %>" title="Pin on top"></i>
+          <% if (theme.index.post_sticky.option=="logo") { %>
+            <i class="index-pin <%= theme.index.post_sticky && theme.index.post_sticky.sticky_icon %>" title="Pin on top"></i>
+          <% } %>
+          <% if (theme.index.post_sticky.option=="text" ) { %>
+            <span class="sticky_text"><%= theme.index.post_sticky && theme.index.post_sticky.sticky_text %>
+            </span>
+            <% } %>
         <% } %>
         <a href="<%= post_url %>" target="<%- theme.index.post_url_target %>">
           <%= post.title %>
@@ -37,21 +43,33 @@ page.banner_mask_alpha = theme.index.banner_mask_alpha
       <div class="index-btm post-metas">
         <% if (theme.index.post_meta.date) { %>
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
+            <i class="iconfont icon-bg-calendar"></i>
             <time datetime="<%= full_date(post.date, 'YYYY-MM-DD HH:mm') %>" pubdate>
               <%- date(post.date, config.date_format) %>
             </time>
           </div>
         <% } %>
+        <% if(theme.index.post_meta.wordcount ) { %>
+          <span class="post-meta mr-3">
+            <i class="iconfont icon-chart"></i><%= wordcount(post) %>&nbsp;字
+          </span>
+        <% } %>
+
+        <!-- 引入评论 -->
+        <span class="post-meta mr-3"><a href="<%= post_url %>#comments">
+          <i class="iconfont icon-pinglun"></i>&nbsp;
+          <span class="waline-comment-count" data-path="<%= post_url %>#comments"></span></a> 条评论
+        </span>
+
         <% if (theme.index.post_meta.category && post.categories.length > 0) { %>
           <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            <%- partial('_partials/category-chains', { categories: post.categories, limit: 1 }) %>
+            <i class="iconfont icon-guanli"></i>
+            <%- partial('_partials/category-chains', { categories: post.categories, limit: 1000 }) %>
           </div>
         <% } %>
         <% if (theme.index.post_meta.tag && post.tags.length > 0) { %>
           <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
+            <i class="iconfont icon-tags-fill"></i>
             <% post.tags.each(function(tag){ %>
               <a href="<%= url_for(tag.path) %>">#<%- tag.name %></a>
             <% }) %>
